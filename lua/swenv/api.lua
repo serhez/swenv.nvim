@@ -111,12 +111,12 @@ end
 
 local get_pixi_base_path = function()
   local current_dir = vim.fn.getcwd()
-  local pixi_root = (Path:new(current_dir) / '.pixi').filename
+  local pixi_root = Path:new(current_dir) / '.pixi'
 
   if not pixi_root:exists() then
-    return nil
+    return ''
   else
-    return pixi_root / 'envs'
+    return (pixi_root / 'envs').filename
   end
 end
 
