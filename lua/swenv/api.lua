@@ -111,7 +111,7 @@ end
 
 local get_pixi_base_path = function()
   local current_dir = vim.fn.getcwd()
-  local pixi_root = Path:new(current_dir) / '.pixi'
+  local pixi_root = (Path:new(current_dir) / '.pixi').filename
 
   if not pixi_root:exists() then
     return nil
@@ -125,7 +125,7 @@ local get_conda_base_path = function()
   if conda_exe == vim.NIL then
     return nil
   else
-    return Path:new(conda_exe):parent():parent() / 'envs'
+    return (Path:new(conda_exe):parent():parent() / 'envs').filename
   end
 end
 
@@ -147,7 +147,7 @@ local get_micromamba_base_path = function()
   if micromamba_root_prefix == vim.NIL then
     return nil
   else
-    return Path:new(micromamba_root_prefix) / 'envs'
+    return (Path:new(micromamba_root_prefix) / 'envs').filename
   end
 end
 
@@ -156,7 +156,7 @@ local get_pyenv_base_path = function()
   if pyenv_root == vim.NIL then
     return nil
   else
-    return Path:new(pyenv_root) / 'versions'
+    return (Path:new(pyenv_root) / 'versions').filename
   end
 end
 
